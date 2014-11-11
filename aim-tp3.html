@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <title>Cover Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="cover.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="masthead clearfix">
+                        <div class="inner">
+                            <h3 class="masthead-brand">Hockey Night Live</h3>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#" id="closeGame">Show matchs only</a></li>
+                                </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="inner cover">
+                        <h1 class="cover-heading">Select a game</h1>
+                        <p class="lead">
+                        <table class="table hockeyLiveTable">
+                            <tr>
+                                <th class="th_cover">#</th>
+                                <th class="th_cover">Games</th>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#1</td>
+                                <td>Partie no 1</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#2</td>
+                                <td>Partie no 2</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#3</td>
+                                <td>Partie no 3</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#1</td>
+                                <td>Partie no 1</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#2</td>
+                                <td>Partie no 2</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#3</td>
+                                <td>Partie no 3</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#1</td>
+                                <td>Partie no 1</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#2</td>
+                                <td>Partie no 2</td>
+                            </tr>
+                            <tr class="rowMatch">
+                                <td>#3</td>
+                                <td>Partie no 3</td>
+                            </tr>
+                        </table>
+                        </p>
+                    </div>
+                    <hr class="hr_match">
+                    <div class="match">
+                        <div class="form-group">
+                            <label>Numero de match</label>  
+                        </div>
+                        <div class="form-group">
+                            <label>Periode : 2</label>  
+                        </div>
+                        <div class="form-group">
+                            <label>20:00</label>    
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4">Equipe visiteur</label>
+                            <label class="col-md-4">Montreal</label>
+                            <label class="col-md-4">2</label>               
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4">Equipe Local</label>
+                            <label class="col-md-4">Toronto</label>     
+                            <label class="col-md-4">3</label>               
+                        </div>
+                        <form class="form-inline" id="radioMatch" role="form">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-sample active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Equipe Visiteur
+                                </label>
+                                <label class="btn btn-sample">
+                                <input type="radio" name="options" id="option2" autocomplete="off"> Equipe Local
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="pari_montant">Entrez votre pari</label>
+                                <input type="email" class="form-control" id="pari_montant" placeholder="Entrez votre pari">
+                            </div>
+                            <button type="submit" class="btn btn-default">Parier</button>
+                        </form>
+                        <div class="match_tab">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">Pénalites</a></li>
+                                <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">Compteurs</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">
+                                    <table class="table tab_penalite_compteur hockeyLiveTable">
+                                        <tr>
+                                            <th class="th_cover">Nom</th>
+                                            <th class="th_cover">Durée</th>
+                                            <th class="th_cover">Temps</th>
+                                        </tr>
+                                        <tr class="rowPenalite">
+                                            <td>Robinson</td>
+                                            <td>2</td>
+                                            <td>12:24</td>
+                                        </tr>
+                                        <tr class="rowPenalite">
+                                            <td>Georges</td>
+                                            <td>2</td>
+                                            <td>12:23</td>
+                                        </tr>
+                                        <tr class="rowPenalite">
+                                            <td>Hola</td>
+                                            <td>2</td>
+                                            <td>10:45</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                    <table class="table tab_penalite_compteur hockeyLiveTable">
+                                        <tr>
+                                            <th class="th_cover">Nom</th>
+                                            <th class="th_cover">Temps</th>
+                                        </tr>
+                                        <tr class="rowCompteur">
+                                            <td>Robinson</td>
+                                            <td>8:24</td>
+                                        </tr>
+                                        <tr class="rowCompteur">
+                                            <td>Georges</td>
+                                            <td>7:23</td>
+                                        </tr>
+                                        <tr class="rowCompteur">
+                                            <td>Hola</td>
+                                            <td>18:45</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mastfoot">
+                        <div class="inner">
+                            <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="dist/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script>
+            $( "p" ).click(function() {
+                
+            });
+            
+            $(document).ready(function($) {
+                  $(".rowMatch").click(function() {
+                      $('.rowMatch').removeClass("activeRowHockeyLive");
+                      $(this).addClass("activeRowHockeyLive");
+                        
+                      $(".match").fadeOut("slow");
+                      $(".tab_penalite_compteur").fadeOut("slow");
+                        
+                      $(".match").fadeIn("slow");
+                      $(".tab_penalite_compteur").fadeIn("slow");
+                  });
+                  
+                  $("#closeGame").click(function() {
+                      $(".match").fadeOut("slow");
+                      $(".tab_penalite_compteur").fadeOut("slow");
+                  });
+            });
+        </script>
+    </body>
+</html>

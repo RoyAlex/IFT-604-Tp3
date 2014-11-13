@@ -1,0 +1,77 @@
+
+.th_cover
+{
+	text-align: center;
+	font: bold;	
+	font-size: 22px;
+}
+
+#radioMatch
+{
+	margin-top: 50px;
+}
+
+.match
+{
+	display: none;
+}
+
+.match_tab
+{
+	margin-top: 50px;
+}
+
+.tab_penalite_compteur
+{
+	display: none;
+}
+
+.hockeyLiveTable tr:hover
+{
+	background-color: #104E8B;
+}
+
+.activeRowHockeyLive td
+{ 
+    background-color: #104E8B;
+}
+
+.hr_match
+{
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #0099CC;
+  border-style: solid none;
+  border-width: 10px 0;
+  margin: 30px 0;
+}
+
+.btn-sample { 
+  color: #FFFFFF; 
+  background-color: #718ED6; 
+  border-color: #130269; 
+} 
+ 
+.btn-sample:hover, 
+.btn-sample:focus, 
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+  color: #FFFFFF; 
+  background-color: #005F9E; 
+  border-color: #130269; 
+} 
+ 
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+  background-image: none; 
+} 
+ 
+.btn-sample .badge { 
+  color: #718ED6; 
+  background-color: #FFFFFF; 
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://dozer.sourceforge.net
+http://dozer.sourceforge.net/schema/beanmapping.xsd">
+  
+  <mapping> 
+    <class-a>com.tp1.library.Compteur</class-a>
+    <class-b>com.tp1.dto.CompteurDTO</class-b>   
+  </mapping>  
+
+  <mapping> 
+    <class-a>com.tp1.library.Equipe</class-a>
+    <class-b>com.tp1.dto.EquipeDTO</class-b>  
+  </mapping>
+  
+  <mapping> 
+    <class-a>com.tp1.library.Joueur</class-a>
+    <class-b>com.tp1.dto.JoueurDTO</class-b>  
+  </mapping>
+  
+  <mapping> 
+    <class-a>com.tp1.library.Match</class-a>
+    <class-b>com.tp1.dto.MatchDTO</class-b>  
+  </mapping>
+  
+  <mapping> 
+    <class-a>com.tp1.library.Paris</class-a>
+    <class-b>com.tp1.dto.ParisDTO</class-b>  
+  </mapping>
+  
+  <mapping> 
+    <class-a>com.tp1.library.Penalite</class-a>
+    <class-b>com.tp1.dto.PenaliteDTO</class-b>  
+  </mapping>
+  
+</mappings>

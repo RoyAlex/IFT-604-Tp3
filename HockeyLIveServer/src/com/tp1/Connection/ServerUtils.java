@@ -1,23 +1,19 @@
 package com.tp1.Connection;
 
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import com.google.gson.Gson;
+import com.tp1.serialization.SerializeToJson;
 
 public class ServerUtils {
 	
 	public static void SerializeAndSendData(Object dataToSend, Socket handler) throws IOException {
 	    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(handler.getOutputStream()));
-	    
-	    Gson gson = new Gson();
-	    String test = "Testing this one";
-        String json = gson.toJson(test);
+
+	    SerializeToJson stj = new SerializeToJson(dataToSend);
+	    String json = stj.toJson();
         
         StringBuilder builder = new StringBuilder();
         builder.append("HTTP/1.1 200 OK\r\n");
@@ -30,5 +26,4 @@ public class ServerUtils {
         out.flush();
         out.close();
 	}
-
 }

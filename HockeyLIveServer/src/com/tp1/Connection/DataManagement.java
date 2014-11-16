@@ -161,8 +161,9 @@ public class DataManagement {
                 String strId = data.substring(data.indexOf("(") + 1,
                         data.indexOf(")"));
                 Match match = matchDAO.getMatch(Integer.parseInt(strId));
-                Time time = match.getMatchTime();
-                ServerUtils.SerializeAndSendData(time, handler);
+                MatchTime matchTime = new MatchTime(match.getMatchTime(), Integer.parseInt(match.getPeriodeCourante()));
+                
+                ServerUtils.SerializeAndSendData(matchTime, handler);
             } catch (IOException e) {
                 System.out.println("Serialize parsing error : " + e.toString());
             }

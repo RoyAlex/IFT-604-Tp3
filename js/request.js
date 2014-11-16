@@ -53,6 +53,25 @@ function showGameById(id)
     });
 }
 
+function refreshTime(id)
+{
+    if (id != "")
+    { 
+        $.ajax({
+            type: POST,
+            url: URL,
+            data: {
+                request: getTimeForAMatch(id)
+            },
+            dataType: DATATYPE,
+            success: function(responseJson) {
+                var obj = JSON.parse(responseJson);
+                updateTime(obj);
+            }
+        });
+    }
+}
+
 function pageLoad()
 {
     // On page load (show list of matchs)
@@ -68,6 +87,10 @@ function pageLoad()
             fillMatchsTable(obj);
         }
     });
+    
+    // Start timers here
+    workerForTime();
+    workerForMatch();
 }
 
 // Make a request to the server with ajax

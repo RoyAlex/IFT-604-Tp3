@@ -10,6 +10,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.tp1.Connection.MatchTime;
 import com.tp1.dto.CompteurDTO;
 import com.tp1.dto.MatchDTO;
 import com.tp1.dto.PenaliteDTO;
@@ -30,6 +31,10 @@ public class SerializeToJson {
         if (data instanceof MatchDTO)
         {
             gson = gsonBuilder.registerTypeAdapter(MatchDTO.class, new SerializeToJson.MatchDTOAdapter()).create();
+        }
+        else if (data instanceof MatchTime)
+        {
+            gson = gsonBuilder.registerTypeAdapter(MatchTime.class, new SerializeToJson.MatchTimeAdapter()).create();
         }
         else if (data instanceof List<?>)
         {
@@ -56,6 +61,16 @@ public class SerializeToJson {
         }
         
         return gson.toJson(data);
+    }
+    
+    private static class MatchTimeAdapter implements JsonSerializer<MatchTime> {
+        public JsonElement serialize(MatchTime matchTime, Type type, JsonSerializationContext jsc) {
+          JsonObject jsonObject = new JsonObject();
+          jsonObject.addProperty("matchTime_timeMin", matchTime.getTime().getMinutes());
+          jsonObject.addProperty("matchTime_timeSec", matchTime.getTime().getSeconds());
+          jsonObject.addProperty("matchTime_periode", matchTime.getPeriode());
+          return jsonObject;      
+        }
     }
 
     private static class MatchDTOAdapter implements JsonSerializer<MatchDTO> {

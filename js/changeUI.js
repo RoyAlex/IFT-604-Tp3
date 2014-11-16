@@ -22,6 +22,12 @@ function fillMatch(data)
     $("#butEquipeLocal").html(data.match_pointageLocal);
 }
 
+function updateTime(data)
+{
+    $("#periodeMatch").html("Periode : " + data.matchTime_periode);
+    $("#timeMatch").html(cleanTime(data.matchTime_timeMin, data.matchTime_timeSec));
+}
+
 function fillPenalites(data)
 {  
     var size = Object.keys(data).length;

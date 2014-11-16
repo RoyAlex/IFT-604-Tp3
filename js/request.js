@@ -9,7 +9,7 @@ function showGameById(id)
         type: POST,
         url: URL,
         data: {
-            request: "bc(" + id +")" // Only for testing
+            request: getMatch(id)
         },
         dataType: DATATYPE,
         success: function(responseJson) {
@@ -23,7 +23,7 @@ function showGameById(id)
         type: POST,
         url: URL,
         data: {
-            request: "bh(" + id +")" // Only for testing
+            request: getPenalitesForAMatch(id)
         },
         dataType: DATATYPE,
         success: function(responseJson) {
@@ -40,7 +40,7 @@ function showGameById(id)
         type: POST,
         url: URL,
         data: {
-            request: "bg(" + id +")" // Only for testing
+            request: getCompteursForAMatch(id)
         },
         dataType: DATATYPE,
         success: function(responseJson) {
@@ -60,7 +60,7 @@ function pageLoad()
         type: POST,
         url: URL,
         data: {
-            request: "bd" // Only for testing
+            request: getMatchs
         },
         dataType: DATATYPE,
         success: function(responseJson) {

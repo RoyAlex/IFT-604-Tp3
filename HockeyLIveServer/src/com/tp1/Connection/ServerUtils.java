@@ -13,7 +13,11 @@ public class ServerUtils {
 	    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(handler.getOutputStream()));
 
 	    SerializeToJson stj = new SerializeToJson(dataToSend);
+
 	    String json = stj.toJson();
+	    
+	    if (json == null)
+	        json = "emptyList";
         
         StringBuilder builder = new StringBuilder();
         builder.append("HTTP/1.1 200 OK\r\n");
@@ -22,7 +26,7 @@ public class ServerUtils {
         builder.append("Content-Length:" + json.length() + "\r\n\r\n");
         builder.append(json);
         out.write(builder.toString());
-        
+    
         out.flush();
         out.close();
 	}

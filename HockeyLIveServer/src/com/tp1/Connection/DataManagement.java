@@ -56,7 +56,7 @@ public class DataManagement {
                 
                 ServerUtils.SerializeAndSendData(matchsDTO, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.GetMatch.getValue().equals(str)){
@@ -74,7 +74,7 @@ public class DataManagement {
                 
                 ServerUtils.SerializeAndSendData(matchDTO, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.GetAllCompteurs.getValue().equals(str)){
@@ -90,7 +90,7 @@ public class DataManagement {
                 
                 ServerUtils.SerializeAndSendData(compteursDTO, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.GetAllPenalites.getValue().equals(str)){
@@ -106,7 +106,7 @@ public class DataManagement {
                 
                 ServerUtils.SerializeAndSendData(penalitesDTO, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.SetPari.getValue().equals(str)){  
@@ -134,7 +134,7 @@ public class DataManagement {
                     
                 ServerUtils.SerializeAndSendData(compteursDTO, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.GetPenalitesForAMatch.getValue().equals(str)){  
@@ -153,7 +153,7 @@ public class DataManagement {
                 
                 ServerUtils.SerializeAndSendData(penalitesDTO, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.GetTimeForAMatch.getValue().equals(str)){  
@@ -164,7 +164,7 @@ public class DataManagement {
                 Time time = match.getMatchTime();
                 ServerUtils.SerializeAndSendData(time, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
 		else if(MessageType.GetPari.getValue().equals(str)){  
@@ -194,7 +194,7 @@ public class DataManagement {
                
                 ServerUtils.SerializeAndSendData(result, handler);
             } catch (IOException e) {
-                System.out.println("Srialize parsing error : " + e.toString());
+                System.out.println("Serialize parsing error : " + e.toString());
             }
         }
     }

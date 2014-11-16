@@ -9,6 +9,7 @@ public class PenaliteDTO implements Serializable {
     private int idPenalite;
     private Time timeOfPenalite;
     private int duree;
+    private int periode;
     private JoueurDTO joueur;
     private MatchDTO match;
     private EquipeDTO equipe;
@@ -18,7 +19,7 @@ public class PenaliteDTO implements Serializable {
 	}
     
     public PenaliteDTO(int idPenalite, Time timeOfPenalite, int duree,
-			JoueurDTO joueur, MatchDTO match, EquipeDTO equipe) {
+			JoueurDTO joueur, MatchDTO match, EquipeDTO equipe, int periode) {
 		super();
 		this.idPenalite = idPenalite;
 		this.timeOfPenalite = timeOfPenalite;
@@ -26,6 +27,7 @@ public class PenaliteDTO implements Serializable {
 		this.joueur = joueur;
 		this.match = match;
 		this.equipe = equipe;
+		this.periode = periode;
 	}
 
 	public int getIdPenalite() {
@@ -42,6 +44,14 @@ public class PenaliteDTO implements Serializable {
     
     public void setDuree(int duree) {
         this.duree = duree;
+    }
+
+    public int getPeriode() {
+        return periode;
+    }
+
+    public void setPeriode(int periode) {
+        this.periode = periode;
     }
 
     public JoueurDTO getJoueur() {

@@ -38,13 +38,13 @@ public class PenaliteDAO {
     }
     
     @SuppressWarnings("unchecked")
-    public int addPenalite(int id, Time time, int idmatch, int idequipe, int idjoueur, int duree) {    
+    public int addPenalite(int id, Time time, int idmatch, int idequipe, int idjoueur, int duree, int periode) {    
     	Session session = HibernateUtil.currentSession();
        
     	Query query = session.createSQLQuery("INSERT INTO penalite(idpenalite, duree, " +
     			"timeofpenalite, equipe_idequipe, joueur_idjoueur,"+ 
-    			"match_idmatch) VALUES "+
-    			"(:idpenalite, :duree, :timeOfPenalite,:idequipe, :idjoueur, :idmatch)");
+    			"match_idmatch, periode) VALUES "+
+    			"(:idpenalite, :duree, :timeOfPenalite,:idequipe, :idjoueur, :idmatch, :periode)");
     	
     	query.setParameter("idpenalite", id);
     	query.setParameter("duree", duree);
@@ -52,6 +52,7 @@ public class PenaliteDAO {
     	query.setParameter("idequipe", idequipe);
     	query.setParameter("idjoueur", idjoueur);
     	query.setParameter("idmatch", idmatch);
+    	query.setParameter("periode", periode);
     	int result = query.executeUpdate();
     	HibernateUtil.closeSession();
         return result;

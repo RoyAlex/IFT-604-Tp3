@@ -32,7 +32,7 @@ public class TimerThread extends Thread {
         }
         catch (InterruptedException ex)
         {
-            System.out.println(ex);
+            System.out.println("Error in TimerThread : " + ex);
         }
     }
 

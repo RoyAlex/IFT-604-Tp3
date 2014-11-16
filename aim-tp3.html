@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Cover Template for Bootstrap</title>
+    <title>Hockey Night Live</title>
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -33,6 +33,7 @@
                                 <a href="#"></a>
                             </li>
                             <li><a href="#" id="closeGame">Show matchs only</a>
+                            <li><a href="#" id="refreshGame">Refresh match</a>
                             </li>
                         </ul>
                     </div>
@@ -41,46 +42,10 @@
                 <div class="inner cover">
                     <h1 class="cover-heading">Select a game</h1>
                     <p class="lead">
-                        <table class="table hockeyLiveTable">
+                        <table id="matchsTable" class="table hockeyLiveTable">
                             <tr>
                                 <th class="th_cover">#</th>
                                 <th class="th_cover">Games</th>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#1</td>
-                                <td>Partie no 1</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#2</td>
-                                <td>Partie no 2</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#3</td>
-                                <td>Partie no 3</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#1</td>
-                                <td>Partie no 1</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#2</td>
-                                <td>Partie no 2</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#3</td>
-                                <td>Partie no 3</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#1</td>
-                                <td>Partie no 1</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#2</td>
-                                <td>Partie no 2</td>
-                            </tr>
-                            <tr class="rowMatch">
-                                <td>#3</td>
-                                <td>Partie no 3</td>
                             </tr>
                         </table>
                     </p>
@@ -88,23 +53,23 @@
                 <hr class="hr_match">
                 <div class="match">
                     <div class="form-group">
-                        <label>Numero de match</label>
+                        <label id="idMatch">Numero de match</label>
                     </div>
                     <div class="form-group">
-                        <label>Periode : 2</label>
+                        <label id="periodeMatch"></label>
                     </div>
                     <div class="form-group">
-                        <label>20:00</label>
+                        <label id="timeMatch"></label>
                     </div>
                     <div class="row">
                         <label class="col-md-4">Equipe visiteur</label>
-                        <label class="col-md-4">Montreal</label>
-                        <label class="col-md-4">2</label>
+                        <label id="nomEquipeVisiteur" class="col-md-4"></label>
+                        <label id="butEquipeVisiteur" class="col-md-4"></label>
                     </div>
                     <div class="row">
                         <label class="col-md-4">Equipe Local</label>
-                        <label class="col-md-4">Toronto</label>
-                        <label class="col-md-4">3</label>
+                        <label id="nomEquipeLocal" class="col-md-4"></label>
+                        <label id="butEquipeLocal" class="col-md-4"></label>
                     </div>
                     <form class="form-inline" id="radioMatch" role="form">
                         <div class="btn-group" data-toggle="buttons">
@@ -132,46 +97,21 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
-                                <table class="table tab_penalite_compteur hockeyLiveTable">
+                                <table id="matchPenalites" class="table tab_penalite_compteur hockeyLiveTable">
                                     <tr>
                                         <th class="th_cover">Nom</th>
                                         <th class="th_cover">Durée</th>
                                         <th class="th_cover">Temps</th>
-                                    </tr>
-                                    <tr class="rowPenalite">
-                                        <td>Robinson</td>
-                                        <td>2</td>
-                                        <td>12:24</td>
-                                    </tr>
-                                    <tr class="rowPenalite">
-                                        <td>Georges</td>
-                                        <td>2</td>
-                                        <td>12:23</td>
-                                    </tr>
-                                    <tr class="rowPenalite">
-                                        <td>Hola</td>
-                                        <td>2</td>
-                                        <td>10:45</td>
+                                        <th class="th_cover">Periode</th>
                                     </tr>
                                 </table>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
-                                <table class="table tab_penalite_compteur hockeyLiveTable">
+                                <table id="matchCompteurs" class="table tab_penalite_compteur hockeyLiveTable">
                                     <tr>
                                         <th class="th_cover">Nom</th>
                                         <th class="th_cover">Temps</th>
-                                    </tr>
-                                    <tr class="rowCompteur">
-                                        <td>Robinson</td>
-                                        <td>8:24</td>
-                                    </tr>
-                                    <tr class="rowCompteur">
-                                        <td>Georges</td>
-                                        <td>7:23</td>
-                                    </tr>
-                                    <tr class="rowCompteur">
-                                        <td>Hola</td>
-                                        <td>18:45</td>
+                                        <th class="th_cover">Periode</th>
                                     </tr>
                                 </table>
                             </div>
@@ -179,8 +119,6 @@
                     </div>
                 </div>
                 <div class="mastfoot">
-                    <!-- Only for testing -->
-                    <button id="submit" class="btn btn-default">Submit via Ajax</button>
                     <!--<div class="inner">
                             <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
                         </div>-->
@@ -199,6 +137,9 @@
     <!-- Our javascript files -->
     <script src="js/animation.js"></script>
     <script src="js/request.js"></script>
+    <script src="js/changeUI.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/constants.js"></script>
 </body>
 
 </html>

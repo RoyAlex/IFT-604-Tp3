@@ -11,19 +11,21 @@ public class CompteurDTO implements Serializable {
     private JoueurDTO joueur;
     private MatchDTO match;
     private EquipeDTO equipe;
+    private int periode;
     
     public CompteurDTO() {
 		super();
 	}
     	
 	public CompteurDTO(int idCompteur, Time timeOfGoal, JoueurDTO joueur,
-			MatchDTO match, EquipeDTO equipe) {
+			MatchDTO match, EquipeDTO equipe, int periode) {
 		super();
 		this.idCompteur = idCompteur;
 		this.timeOfGoal = timeOfGoal;
 		this.joueur = joueur;
 		this.match = match;
 		this.equipe = equipe;
+		this.setPeriode(periode);
 	}
 
 	// Get, Set
@@ -65,5 +67,13 @@ public class CompteurDTO implements Serializable {
 
     public void setEquipe(EquipeDTO equipe) {
         this.equipe = equipe;
+    }
+
+    public int getPeriode() {
+        return periode;
+    }
+
+    public void setPeriode(int periode) {
+        this.periode = periode;
     }
 }

@@ -37,18 +37,19 @@ public class CompteurDAO {
     }
     
     @SuppressWarnings("unchecked")
-    public int addCompteur(int id,Time time, int idequipe, int idjoueur, int idmatch) {    
+    public int addCompteur(int id,Time time, int idequipe, int idjoueur, int idmatch, int periode) {    
         Session session = HibernateUtil.currentSession();
       
     	Query query = session.createSQLQuery("INSERT INTO compteur(idcompteur,"+
-            "timeofgoal, equipe_idequipe, joueur_idjoueur, match_idmatch) VALUES "+
-    			"(:idcompteur, :timeofgoal,:idequipe, :idjoueur, :idmatch)");
+            "timeofgoal, equipe_idequipe, joueur_idjoueur, match_idmatch, periode) VALUES "+
+    			"(:idcompteur, :timeofgoal,:idequipe, :idjoueur, :idmatch, :periode)");
     	
     	query.setParameter("idcompteur", id);
     	query.setParameter("timeofgoal", time);
     	query.setParameter("idequipe", idequipe);
     	query.setParameter("idjoueur", idjoueur);
     	query.setParameter("idmatch", idmatch);
+    	query.setParameter("periode", periode);
     	int result = query.executeUpdate();
     	HibernateUtil.closeSession();
         return result;

@@ -33,21 +33,26 @@ public class SerializeToJson {
         }
         else if (data instanceof List<?>)
         {
-            // List of MatchDTO
-            if(((List<?>)data).get(0) instanceof MatchDTO)
+            if (((List<?>)data).size() > 0)
             {
-                gson = gsonBuilder.registerTypeAdapter(MatchDTO.class, new SerializeToJson.MatchDTOAdapter()).create();
+                // List of MatchDTO
+                if(((List<?>)data).get(0) instanceof MatchDTO)
+                {
+                    gson = gsonBuilder.registerTypeAdapter(MatchDTO.class, new SerializeToJson.MatchDTOAdapter()).create();
+                }
+                // List of CompteurDTO
+                else if(((List<?>)data).get(0) instanceof CompteurDTO)
+                {
+                    gson = gsonBuilder.registerTypeAdapter(CompteurDTO.class, new SerializeToJson.CompteurDTOAdapter()).create();
+                }
+                // List of PenaliteDTO
+                else if(((List<?>)data).get(0) instanceof PenaliteDTO)
+                {
+                    gson = gsonBuilder.registerTypeAdapter(PenaliteDTO.class, new SerializeToJson.PenaliteDTOAdapter()).create();
+                }
             }
-            // List of CompteurDTO
-            else if(((List<?>)data).get(0) instanceof CompteurDTO)
-            {
-                gson = gsonBuilder.registerTypeAdapter(CompteurDTO.class, new SerializeToJson.CompteurDTOAdapter()).create();
-            }
-            // List of PenaliteDTO
-            else if(((List<?>)data).get(0) instanceof PenaliteDTO)
-            {
-                gson = gsonBuilder.registerTypeAdapter(PenaliteDTO.class, new SerializeToJson.PenaliteDTOAdapter()).create();
-            }
+            else
+                return null;
         }
         
         return gson.toJson(data);
@@ -74,6 +79,11 @@ public class SerializeToJson {
           JsonObject jsonObject = new JsonObject();
           jsonObject.addProperty("penalite_id", penalite.getIdPenalite());
           jsonObject.addProperty("penalite_duree", penalite.getDuree());
+          jsonObject.addProperty("penalite_periode", penalite.getPeriode());
+          jsonObject.addProperty("penalite_nomJoueur", penalite.getJoueur().getNomJoueur());
+          jsonObject.addProperty("penalite_nomEquipe", penalite.getEquipe().getNomEquipe());
+          jsonObject.addProperty("penalite_timeMin", penalite.getTimeOfPenalite().getMinutes());
+          jsonObject.addProperty("penalite_timeSec", penalite.getTimeOfPenalite().getSeconds());
           return jsonObject;      
         }
     }
@@ -82,7 +92,11 @@ public class SerializeToJson {
         public JsonElement serialize(CompteurDTO compteur, Type type, JsonSerializationContext jsc) {
           JsonObject jsonObject = new JsonObject();
           jsonObject.addProperty("compteur_id", compteur.getIdCompteur());
+          jsonObject.addProperty("compteur_periode", compteur.getPeriode());
+          jsonObject.addProperty("compteur_nomJoueur", compteur.getJoueur().getNomJoueur());
           jsonObject.addProperty("compteur_nomEquipe", compteur.getEquipe().getNomEquipe());
+          jsonObject.addProperty("compteur_timeMin", compteur.getTimeOfGoal().getMinutes());
+          jsonObject.addProperty("compteur_timeSec", compteur.getTimeOfGoal().getSeconds());
           return jsonObject;      
         }
     }

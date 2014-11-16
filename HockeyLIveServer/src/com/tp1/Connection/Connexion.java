@@ -28,7 +28,7 @@ public class Connexion {
 			threadPool = Executors.newFixedThreadPool(10);	
 			ServerSocket server = new ServerSocket(9090, 0, InetAddress.getByName(null));
 			
-			//StartTimer();
+			StartTimer();
 
 			while (true) {
 	            System.out.println("Waiting for a connection...");
@@ -40,56 +40,60 @@ public class Connexion {
 	            // Read request
 	            String line;
 	            line = in.readLine();
-	            boolean isPost = line.startsWith("POST");
-	            int contentLength = 0;
-	            String data = "";
 	            
-	            // Header
-	            while (!(line = in.readLine()).equals("")) {
-	                System.out.println(line);
-	                if (isPost) {
-	                    final String contentHeader = "Content-Length: ";
-	                    if (line.startsWith(contentHeader)) {
-	                        contentLength = Integer.parseInt(line.substring(contentHeader.length()));
-	                    }
-	                }
-	            }
-	    
-	            // Body
-	            if (isPost) {
-	                int c = 0;
-	                for (int i = 0; i < contentLength; i++) {
-	                    c = in.read();
-	                    data += (char) c;
-	                }
-	            }
-	            
-	            System.out.println(data);
-	            
-	            // Remove "request:"
-	            data = data.substring(8);
-	            
-	            String str = data.substring(0, 1);
-                data = data.substring(1);
-                
-                if(MessageType.ThreadPerObject.getValue().equals(str))
-                {
-                    // Create parallel line for each object
-                    ThreadPerObject tpo = new ThreadPerObject(socket, dataManager, data);
-                    tpo.CreateThreadPerObject();
-                }
-                if(MessageType.ThreadPerRequest.getValue().equals(str))
-                {
-                    // Create parallel line of execution for Thread Per Request
+	            if (line != null)
+	            {
+    	            boolean isPost = line.startsWith("POST");
+    	            int contentLength = 0;
+    	            String data = "";
+    	            
+    	            // Header
+    	            while (!(line = in.readLine()).equals("")) {
+    	                System.out.println(line);
+    	                if (isPost) {
+    	                    final String contentHeader = "Content-Length: ";
+    	                    if (line.startsWith(contentHeader)) {
+    	                        contentLength = Integer.parseInt(line.substring(contentHeader.length()));
+    	                    }
+    	                }
+    	            }
+    	    
+    	            // Body
+    	            if (isPost) {
+    	                int c = 0;
+    	                for (int i = 0; i < contentLength; i++) {
+    	                    c = in.read();
+    	                    data += (char) c;
+    	                }
+    	            }
+    	            
+    	            System.out.println(data);
+    	            
+    	            // Remove "request:"
+    	            data = data.substring(8);
+    	            
+    	            String str = data.substring(0, 1);
+                    data = data.substring(1);
                     
-                    ThreadPerRequest tpr = new ThreadPerRequest(socket, dataManager, data);
-                    threadPool.execute(tpr);
-                }
+                    if(MessageType.ThreadPerObject.getValue().equals(str))
+                    {
+                        // Create parallel line for each object
+                        ThreadPerObject tpo = new ThreadPerObject(socket, dataManager, data);
+                        tpo.CreateThreadPerObject();
+                    }
+                    if(MessageType.ThreadPerRequest.getValue().equals(str))
+                    {
+                        // Create parallel line of execution for Thread Per Request
+                        
+                        ThreadPerRequest tpr = new ThreadPerRequest(socket, dataManager, data);
+                        threadPool.execute(tpr);
+                    }
+	            }
 	        }
 		} 
 		catch (Exception e) 
 		{
-			System.out.println(e);
+			System.out.println("Error in Connexion: " + e);
 		}
 	}
 	

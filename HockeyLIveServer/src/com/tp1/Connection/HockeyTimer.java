@@ -99,7 +99,7 @@ public class HockeyTimer {
                     idjoueur = joueurDAO.getPlayerByTeam(match.getEquipeVisiteur()).getIdJoueur();
                 }
 
-                compteurDAO.addCompteur(idcompteur, matchTime,idequipe,idjoueur,match.getIdMatch());
+                compteurDAO.addCompteur(idcompteur, matchTime,idequipe,idjoueur,match.getIdMatch(), Integer.parseInt(match.getPeriodeCourante()));
                 idcompteur+=1;
                 //matchDAO.updateMatch(match);
                 
@@ -127,7 +127,7 @@ public class HockeyTimer {
                      idjoueur = joueurDAO.getPlayerByTeam(match.getEquipeVisiteur()).getIdJoueur();
                 }
                
-                penaliteDAO.addPenalite(idpenalite, matchTime,match.getIdMatch(),idequipe, idjoueur,2);
+                penaliteDAO.addPenalite(idpenalite, matchTime,match.getIdMatch(),idequipe, idjoueur,2, Integer.parseInt(match.getPeriodeCourante()));
                 idpenalite+=1;
                 //match.setNbrPenalite(match.getNbrPenalite()+1);
                 //matchDAO.updateMatch(match);

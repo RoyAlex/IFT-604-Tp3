@@ -16,6 +16,7 @@ public class Compteur implements Serializable {
 	@Id @GeneratedValue
     private int idCompteur;
     private Time timeOfGoal;
+    private int periode;
 	
 	public Compteur() 
 	{
@@ -71,5 +72,13 @@ public class Compteur implements Serializable {
 
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
+    }
+
+    public int getPeriode() {
+        return periode;
+    }
+
+    public void setPeriode(int periode) {
+        this.periode = periode;
     }
 }

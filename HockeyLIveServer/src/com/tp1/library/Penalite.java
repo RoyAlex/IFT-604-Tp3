@@ -17,6 +17,7 @@ public class Penalite implements Serializable {
     private int idPenalite;
     private Time timeOfPenalite;
     private int duree;
+    private int periode;
     
     public Penalite() {
 		super();
@@ -45,6 +46,14 @@ public class Penalite implements Serializable {
     
     public void setDuree(int duree) {
         this.duree = duree;
+    }
+
+    public int getPeriode() {
+        return periode;
+    }
+
+    public void setPeriode(int periode) {
+        this.periode = periode;
     }
 
     public Time getTimeOfPenalite() {

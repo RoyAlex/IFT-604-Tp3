@@ -18,6 +18,7 @@ public class Penalite implements Serializable {
     private Time timeOfPenalite;
     private int duree;
     private int periode;
+    private boolean dejaAfficher;
     
     public Penalite() {
 		super();
@@ -86,5 +87,13 @@ public class Penalite implements Serializable {
 
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
+    }
+
+    public boolean isDejaAfficher() {
+        return dejaAfficher;
+    }
+
+    public void setDejaAfficher(boolean dejaAfficher) {
+        this.dejaAfficher = dejaAfficher;
     }
 }

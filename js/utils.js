@@ -32,3 +32,17 @@ function workerForMatch()
     showGameById(id);
     setTimeout(workerForMatch, MATCH_REFRESH);
 }
+
+// Show all Penalties
+function workerForPenalties()
+{
+    requestAllPenalites();
+    setTimeout(workerForPenalties, PENALTIES_REFRESH);
+}
+
+// Show all goals
+function workerForGoals()
+{
+    requestAllGoals();
+    setTimeout(workerForGoals, GOALS_REFRESH);
+}

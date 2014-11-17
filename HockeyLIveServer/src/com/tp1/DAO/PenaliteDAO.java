@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 
 
 import com.tp1.library.Compteur;
+import com.tp1.library.Match;
 import com.tp1.library.Penalite;
 
 public class PenaliteDAO {
@@ -18,7 +19,7 @@ public class PenaliteDAO {
     @SuppressWarnings("unchecked")
     public List<Penalite> listPenalites() {
         Session session = HibernateUtil.currentSession();
-        Query query = session.createQuery("from Penalite");
+        Query query = session.createQuery("from Penalite where dejaAfficher = false");
         query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<?> list = query.list();
         HibernateUtil.closeSession();
@@ -43,8 +44,8 @@ public class PenaliteDAO {
        
     	Query query = session.createSQLQuery("INSERT INTO penalite(idpenalite, duree, " +
     			"timeofpenalite, equipe_idequipe, joueur_idjoueur,"+ 
-    			"match_idmatch, periode) VALUES "+
-    			"(:idpenalite, :duree, :timeOfPenalite,:idequipe, :idjoueur, :idmatch, :periode)");
+    			"match_idmatch, periode, dejaafficher) VALUES "+
+    			"(:idpenalite, :duree, :timeOfPenalite,:idequipe, :idjoueur, :idmatch, :periode, :dejaafficher)");
     	
     	query.setParameter("idpenalite", id);
     	query.setParameter("duree", duree);
@@ -53,8 +54,19 @@ public class PenaliteDAO {
     	query.setParameter("idjoueur", idjoueur);
     	query.setParameter("idmatch", idmatch);
     	query.setParameter("periode", periode);
+    	query.setParameter("dejaafficher", false);
     	int result = query.executeUpdate();
     	HibernateUtil.closeSession();
         return result;
+    }
+    
+    public void updatePenalite(Penalite penalite) { 
+        Session session = HibernateUtil.currentSession();
+        Transaction tx = session.beginTransaction();
+        
+        session.update(penalite);
+        
+        tx.commit();
+        HibernateUtil.closeSession();
     }
 }

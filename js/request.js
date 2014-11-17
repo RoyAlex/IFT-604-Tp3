@@ -72,6 +72,44 @@ function refreshTime(id)
     }
 }
 
+function requestAllPenalites()
+{
+    $.ajax({
+        type: POST,
+        url: URL,
+        data: {
+            request: getAllPenalites()
+        },
+        dataType: DATATYPE,
+        success: function(responseJson) {
+            if (responseJson != "emptyList")
+            {
+                var obj = JSON.parse(responseJson);
+                ShowPenalites(obj);
+            }
+        }
+    });
+}
+
+function requestAllGoals()
+{
+    $.ajax({
+        type: POST,
+        url: URL,
+        data: {
+            request: getAllCompteurs()
+        },
+        dataType: DATATYPE,
+        success: function(responseJson) {
+            if (responseJson != "emptyList")
+            {
+                var obj = JSON.parse(responseJson);
+                ShowGoals(obj);
+            }
+        }
+    });
+}
+
 function pageLoad()
 {
     // On page load (show list of matchs)
@@ -89,8 +127,15 @@ function pageLoad()
     });
     
     // Start timers here
+    startTimers();
+}
+
+function startTimers()
+{
     workerForTime();
     workerForMatch();
+    workerForPenalties();
+    workerForGoals();
 }
 
 // Make a request to the server with ajax

@@ -84,6 +84,8 @@ public class DataManagement {
                 List<CompteurDTO> compteursDTO = new ArrayList<CompteurDTO>(allCompteurs != null ? allCompteurs.size() : 0);
                 if (allCompteurs != null) {
                   for (Compteur compteur : allCompteurs) {
+                      compteur.setDejaAfficher(true);
+                      compteurDAO.updateCompteur(compteur);
                       compteursDTO.add(DozerBeanMapperSingletonWrapper.getInstance().map(compteur, CompteurDTO.class));
                   }
                 }
@@ -96,10 +98,12 @@ public class DataManagement {
 		else if(MessageType.GetAllPenalites.getValue().equals(str)){
             try {
                 List<Penalite> allPenalites = penaliteDAO.listPenalites();
-                
+
                 List<PenaliteDTO> penalitesDTO = new ArrayList<PenaliteDTO>(allPenalites != null ? allPenalites.size() : 0);
                 if (allPenalites != null) {
                   for (Penalite penalite : allPenalites) {
+                      penalite.setDejaAfficher(true);
+                      penaliteDAO.updatePenalite(penalite);
                       penalitesDTO.add(DozerBeanMapperSingletonWrapper.getInstance().map(penalite, PenaliteDTO.class));
                   }
                 }

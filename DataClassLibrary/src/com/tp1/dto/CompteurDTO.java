@@ -12,6 +12,7 @@ public class CompteurDTO implements Serializable {
     private MatchDTO match;
     private EquipeDTO equipe;
     private int periode;
+    private boolean dejaAfficher;
     
     public CompteurDTO() {
 		super();
@@ -26,6 +27,7 @@ public class CompteurDTO implements Serializable {
 		this.match = match;
 		this.equipe = equipe;
 		this.setPeriode(periode);
+		this.setDejaAfficher(false);
 	}
 
 	// Get, Set
@@ -75,5 +77,13 @@ public class CompteurDTO implements Serializable {
 
     public void setPeriode(int periode) {
         this.periode = periode;
+    }
+
+    public boolean isDejaAfficher() {
+        return dejaAfficher;
+    }
+
+    public void setDejaAfficher(boolean dejaAfficher) {
+        this.dejaAfficher = dejaAfficher;
     }
 }

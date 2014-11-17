@@ -17,6 +17,7 @@ public class Compteur implements Serializable {
     private int idCompteur;
     private Time timeOfGoal;
     private int periode;
+    private boolean dejaAfficher;
 	
 	public Compteur() 
 	{
@@ -80,5 +81,13 @@ public class Compteur implements Serializable {
 
     public void setPeriode(int periode) {
         this.periode = periode;
+    }
+
+    public boolean isDejaAfficher() {
+        return dejaAfficher;
+    }
+
+    public void setDejaAfficher(boolean dejaAfficher) {
+        this.dejaAfficher = dejaAfficher;
     }
 }

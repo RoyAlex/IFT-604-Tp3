@@ -13,6 +13,7 @@ public class PenaliteDTO implements Serializable {
     private JoueurDTO joueur;
     private MatchDTO match;
     private EquipeDTO equipe;
+    private boolean dejaAfficher;
     
     public PenaliteDTO() {
 		super();
@@ -28,6 +29,7 @@ public class PenaliteDTO implements Serializable {
 		this.match = match;
 		this.equipe = equipe;
 		this.periode = periode;
+		this.setDejaAfficher(false);
 	}
 
 	public int getIdPenalite() {
@@ -84,5 +86,13 @@ public class PenaliteDTO implements Serializable {
 
     public void setEquipe(EquipeDTO equipe) {
         this.equipe = equipe;
+    }
+
+    public boolean isDejaAfficher() {
+        return dejaAfficher;
+    }
+
+    public void setDejaAfficher(boolean dejaAfficher) {
+        this.dejaAfficher = dejaAfficher;
     }
 }

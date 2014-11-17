@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.tp1.DAO.ParisDAO;
+import com.tp1.customMatchClass.MatchPari;
 import com.tp1.library.Match;
 import com.tp1.library.Paris;
 
@@ -22,7 +23,7 @@ public class ParisThread implements Runnable {
 	public void run() {
 		
 		ParisDAO parisDAO = new ParisDAO();
-		Paris paris = parisDAO.getParisFromUserAndMatch(info[1], match);
+		Paris paris = parisDAO.getParisFromUserAndMatch(info[0], match);
 		
 
 		int periode = 0;
@@ -35,11 +36,11 @@ public class ParisThread implements Runnable {
 			
 			// doSomething enregistrer dans la BD le paris
 			paris = new Paris();
-			paris.setIdUtilisateur(info[1]);
+			paris.setIdUtilisateur(info[0]);
 			paris.setMatch(match);
-			paris.setMontant(Float.parseFloat(info[4]));
+			paris.setMontant(Float.parseFloat(info[3]));
 
-			if (Integer.parseInt(info[3]) == match.getEquipeLocal()
+			if (Integer.parseInt(info[2]) == match.getEquipeLocal()
 					.getIdEquipe()) {
 				paris.setEquipe(match.getEquipeLocal());
 			} else {
@@ -50,8 +51,10 @@ public class ParisThread implements Runnable {
 
 			parisDAO.addParis(paris);
 			
+			MatchPari matchPari = new MatchPari(paris);
+			
 			try {		
-				ServerUtils.SerializeAndSendData(paris.getEstEnregistrer(), handler);
+				ServerUtils.SerializeAndSendData(matchPari, handler);
 				handler.close();
 			} catch (IOException e) {
 				e.printStackTrace();

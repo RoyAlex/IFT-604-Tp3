@@ -1,16 +1,15 @@
 package com.tp1.serialization;
 
 import java.lang.reflect.Type;
-import java.sql.Time;
 import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.tp1.Connection.MatchTime;
+import com.tp1.customMatchClass.MatchPari;
+import com.tp1.customMatchClass.MatchTime;
 import com.tp1.dto.CompteurDTO;
 import com.tp1.dto.MatchDTO;
 import com.tp1.dto.PenaliteDTO;
@@ -35,6 +34,10 @@ public class SerializeToJson {
         else if (data instanceof MatchTime)
         {
             gson = gsonBuilder.registerTypeAdapter(MatchTime.class, new SerializeToJson.MatchTimeAdapter()).create();
+        }
+        else if (data instanceof MatchPari)
+        {
+            gson = gsonBuilder.registerTypeAdapter(MatchPari.class, new SerializeToJson.MatchPariAdapter()).create();
         }
         else if (data instanceof List<?>)
         {
@@ -63,6 +66,16 @@ public class SerializeToJson {
         return gson.toJson(data);
     }
     
+    private static class MatchPariAdapter implements JsonSerializer<MatchPari> {
+        public JsonElement serialize(MatchPari matchPari, Type type, JsonSerializationContext jsc) {
+          JsonObject jsonObject = new JsonObject();
+          jsonObject.addProperty("matchPari_matchId", matchPari.getMatch().getIdMatch());
+          jsonObject.addProperty("matchPari_montant", matchPari.getMontant());
+          jsonObject.addProperty("matchPari_estEnregistrer", matchPari.isEstEnregistrer());
+          return jsonObject;      
+        }
+    }
+    
     private static class MatchTimeAdapter implements JsonSerializer<MatchTime> {
         public JsonElement serialize(MatchTime matchTime, Type type, JsonSerializationContext jsc) {
           JsonObject jsonObject = new JsonObject();
@@ -85,6 +98,8 @@ public class SerializeToJson {
           jsonObject.addProperty("match_nomEquipeVisiteur", match.getEquipeVisiteur().getNomEquipe());
           jsonObject.addProperty("match_timeMin", match.getMatchTime().getMinutes());
           jsonObject.addProperty("match_timeSec", match.getMatchTime().getSeconds());
+          jsonObject.addProperty("match_idEquipeVisiteur", match.getEquipeVisiteur().getIdEquipe());
+          jsonObject.addProperty("match_idEquipeLocal", match.getEquipeLocal().getIdEquipe());
           return jsonObject;      
         }
     }

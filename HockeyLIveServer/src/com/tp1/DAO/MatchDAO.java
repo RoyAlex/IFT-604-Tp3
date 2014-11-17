@@ -13,7 +13,7 @@ import com.tp1.library.Match;
 public class MatchDAO {
 	
 	@SuppressWarnings("unchecked")
-	public List<Match> listMatchs() {
+	public synchronized List<Match> listMatchs() {
 		Session session = HibernateUtil.currentSession();
 		String hql = "FROM Match";
 		Query query = session.createQuery(hql);
@@ -46,7 +46,7 @@ public class MatchDAO {
         return match;
     }
 	
-	public Match updateMatch(Match match) {	
+	public synchronized Match updateMatch(Match match) {	
 		Session session = HibernateUtil.currentSession();
 		Transaction tx = session.beginTransaction();
 		

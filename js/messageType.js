@@ -11,7 +11,7 @@ var messageType = Object.freeze({
     GetPenalitesForAMatch: "h",
     GetTimeForAMatch: "i",
     GetAllCompteurs: "j",
-    GetAllPenalites: "k"
+    GetAllPenalites: "k",
 });
 
 // Thread per request/object
@@ -21,10 +21,24 @@ var tpo = messageType.ThreadPerObject;
 // Requests
 function getMatch(id) { return tpr + messageType.GetMatch + "(" + id + ")"; }
 function getMatchs() { return tpr + messageType.GetMatchs; }
-function getPari() { return tpo + messageType.GetPari; }
-function setPari() { return tpo + messageType.SetPari; }
 function getCompteursForAMatch(id) { return tpr + messageType.GetCompteursForAMatch + "(" + id + ")"; }
 function getPenalitesForAMatch(id) { return tpr + messageType.GetPenalitesForAMatch + "(" + id + ")"; }
 function getTimeForAMatch(id) { return tpr + messageType.GetTimeForAMatch + "(" + id + ")"; }
 function getAllCompteurs() { return tpr + messageType.GetAllCompteurs; }
 function getAllPenalites() { return tpr + messageType.GetAllPenalites; }
+
+function getPari(idClient, idMatch) 
+{ 
+    return tpo + messageType.GetPari +
+        idClient + "---" +
+        idMatch;        
+}
+
+function setPari(idClient, idMatch, idEquipe, montant) 
+{ 
+    return tpo + messageType.SetPari + 
+        idClient + "---" +
+        idMatch + "---" +
+        idEquipe + "---" +
+        montant; 
+}

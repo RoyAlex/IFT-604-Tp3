@@ -1,23 +1,23 @@
-package com.tp1.Connection;
+package com.tp1.customMatchClass;
 
 import java.sql.Time;
 
 public class MatchTime {
 
     private Time time;
-    private int periode;
+    private String periode;
     
-    public MatchTime(Time time, int periode)
+    public MatchTime(Time time, String periode)
     {
         this.setTime(time);
         this.setPeriode(periode);
     }
 
-    public int getPeriode() {
+    public String getPeriode() {
         return periode;
     }
 
-    public void setPeriode(int periode) {
+    public void setPeriode(String periode) {
         this.periode = periode;
     }
 

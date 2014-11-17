@@ -110,6 +110,45 @@ function requestAllGoals()
     });
 }
 
+function requestSetPari(idMatch, idEquipe, montant)
+{
+    $.ajax({
+        type: POST,
+        url: URL,
+        data: {
+            request: setPari(ID_CLIENT, idMatch, idEquipe, montant)
+        },
+        dataType: DATATYPE,
+        success: function(responseJson) {
+                var obj = JSON.parse(responseJson);
+                
+                if (obj.matchPari_estEnregistrer)
+                    $().toastmessage(TOAST_PARI, "Congratulations, your bet of " + obj.matchPari_montant + " $ have been registered !");
+                else
+                    alert("Your bet has not been registered");
+        }
+    });   
+}
+
+function requestGetPari(idMatch, idEquipe)
+{
+    $.ajax({
+        type: POST,
+        url: URL,
+        data: {
+            request: getPari(ID_CLIENT, idMatch)
+        },
+        dataType: DATATYPE,
+        success: function(responseJson) {
+            if (responseJson != "emptyList")
+            {
+                var obj = JSON.parse(responseJson);
+                showPari(obj);               
+            }
+        }
+    });   
+}
+
 function pageLoad()
 {
     // On page load (show list of matchs)
@@ -142,11 +181,5 @@ function startTimers()
 $(document).ready(function() {
     pageLoad();
 
-    // Retrieve information for a match
-    $("#matchsTable").on('click', 'tr', function(event) {
-        // Get the id of the row
-        var id = $(this).find("td").eq(0).html();
-        
-        showGameById(id);
-    });
+    getButtonsClick();
 });

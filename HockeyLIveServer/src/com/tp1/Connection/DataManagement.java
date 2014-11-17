@@ -8,12 +8,16 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapperSingletonWrapper;
 
+import utils.HockeyUtils;
+
 
 
 import com.tp1.DAO.CompteurDAO;
 import com.tp1.DAO.MatchDAO;
 import com.tp1.DAO.ParisDAO;
 import com.tp1.DAO.PenaliteDAO;
+import com.tp1.customMatchClass.MatchPari;
+import com.tp1.customMatchClass.MatchTime;
 import com.tp1.dto.CompteurDTO;
 import com.tp1.dto.MatchDTO;
 import com.tp1.dto.MessageType;
@@ -65,6 +69,7 @@ public class DataManagement {
                         data.indexOf(")"));
                 
                 MatchDTO matchDTO = new MatchDTO();
+                
                 Match match = matchDAO.getMatch(Integer.parseInt(strId));
                 
                 if(match != null)
@@ -114,9 +119,9 @@ public class DataManagement {
             }
         }
 		else if(MessageType.SetPari.getValue().equals(str)){  
-                String[] parts = data.split(";");
+                String[] parts = data.split("---");
                 // threading part
-                Match match = matchDAO.getMatch(Integer.parseInt(parts[2]));
+                Match match = matchDAO.getMatch(Integer.parseInt(parts[1]));
 
                 ParisThread pt = new ParisThread(match, parts, handler);
                 TamponManager.getInstance().GetTamponMatchAt(match.getIdMatch()).execute(pt);
@@ -165,7 +170,7 @@ public class DataManagement {
                 String strId = data.substring(data.indexOf("(") + 1,
                         data.indexOf(")"));
                 Match match = matchDAO.getMatch(Integer.parseInt(strId));
-                MatchTime matchTime = new MatchTime(match.getMatchTime(), Integer.parseInt(match.getPeriodeCourante()));
+                MatchTime matchTime = new MatchTime(match.getMatchTime(), match.getPeriodeCourante());
                 
                 ServerUtils.SerializeAndSendData(matchTime, handler);
             } catch (IOException e) {
@@ -174,15 +179,25 @@ public class DataManagement {
         }
 		else if(MessageType.GetPari.getValue().equals(str)){  
             try {
-                String[] parts = data.split(";");
-                String result = "NULL";
+                String[] parts = data.split("---");
                 float montant = 0;
-                Match match = matchDAO.getMatch(Integer.parseInt(parts[2]));
-                Paris paris = parisDAO.getParisFromUserAndMatch(parts[1], match);
-                int equipeGagnante = Integer.parseInt(parts[3].trim()); // fix a problem
+                Match match = matchDAO.getMatch(Integer.parseInt(parts[1]));
+                Paris paris = parisDAO.getParisFromUserAndMatch(parts[0], match);
                 
-                if(paris!=null){
-                    if(equipeGagnante == paris.getEquipe().getIdEquipe()){
+                MatchPari matchPari = null;
+                
+                if(paris!=null) {
+                    
+                    int equipeGagnante;
+                    
+                    if (match.getPointageEquipeLocal() > match.getPointageEquipeVisiteur())
+                        equipeGagnante = match.getEquipeLocal().getIdEquipe();
+                    else if (match.getPointageEquipeLocal() < match.getPointageEquipeVisiteur())
+                        equipeGagnante = match.getEquipeVisiteur().getIdEquipe();
+                    else
+                        equipeGagnante = 0;
+                    
+                    if(paris.getEquipe().getIdEquipe() == equipeGagnante){
                         //Gagnant
                         montant = (float) (paris.getMontant() * 1.75);
                     }
@@ -194,10 +209,10 @@ public class DataManagement {
                         //Perdant
                         montant -= paris.getMontant();
                     }
-                    result = Float.toString(montant);
+                    matchPari = new MatchPari(match, Float.toString(montant));
                 }
                
-                ServerUtils.SerializeAndSendData(result, handler);
+                ServerUtils.SerializeAndSendData(matchPari, handler);
             } catch (IOException e) {
                 System.out.println("Serialize parsing error : " + e.toString());
             }

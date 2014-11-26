@@ -14,5 +14,17 @@ var TOAST_PENALTY = "showWarningToast";
 var TOAST_GOAL = "showNoticeToast";
 var TOAST_PARI = "showSuccessToast";
 
-// Id client
-var ID_CLIENT = "ebff6f0d-f12d-7c17-b6db-7584cf39aa40";//guid();
+if (localStorage) {
+    // retrieve 
+	if (typeof localStorage.getItem('GUID') !== 'undefined' && localStorage.getItem('GUID') !== null){
+		document.getElementById("result").innerHTML = localStorage.getItem("GUID");
+	}
+	//store
+	else{
+		var ID_CLIENT = guid();
+		localStorage.setItem("GUID", ID_CLIENT);
+	}
+	//ne supporte pas html 5
+} else {
+    document.getElementById("result").innerHTML = "Desole votre naviguateur ne supporte pas HTML5"
+}
